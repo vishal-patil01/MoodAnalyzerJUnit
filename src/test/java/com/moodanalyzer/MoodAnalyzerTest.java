@@ -38,7 +38,7 @@ public class MoodAnalyzerTest {
         try {
             moodAnalyzer.analyseMood();
         } catch (MoodAnalyzerException e) {
-            Assert.assertEquals(MoodAnalyzerException.ExceptionType.IS_NULL, e.type);
+            Assert.assertEquals(MoodAnalyzerException.ExceptionType.ENTERED_NULL, e.type);
         }
     }
 
@@ -48,7 +48,7 @@ public class MoodAnalyzerTest {
         try {
             moodAnalyzer.analyseMood();
         } catch (MoodAnalyzerException e) {
-            Assert.assertEquals(MoodAnalyzerException.ExceptionType.IS_EMPTY, e.type);
+            Assert.assertEquals(MoodAnalyzerException.ExceptionType.ENTERED_EMPTY, e.type);
         }
     }
 
@@ -127,6 +127,37 @@ public class MoodAnalyzerTest {
             MoodAnalyzerFactory.invokeMethod(moodObject, "analyseMood1");
         } catch (MoodAnalyzerException e) {
             Assert.assertEquals(MoodAnalyzerException.ExceptionType.NO_SUCH_METHOD, e.type);
+        }
+    }
+
+    //Set Field (Variable) Value At Runtime Using Reflection
+    @Test
+    public void givenFieldNameAndItsValue_WhenProper_ShouldReturnValue() {
+
+        MoodAnalyzer moodObject = MoodAnalyzerFactory.createMoodAnalyzer();
+        String mood = MoodAnalyzerFactory.setFieldValue(moodObject, "I am in Happy Mood", "mood");
+        Assert.assertEquals("Happy", mood);
+    }
+
+    // When Field Value Not Present Throw Exception
+    @Test
+    public void givenFieldNameAndItsValue_WhenFieldNotFound_ShouldThrowMoodAnalyzerException() {
+        try {
+            MoodAnalyzer moodObject = MoodAnalyzerFactory.createMoodAnalyzer();
+            MoodAnalyzerFactory.setFieldValue(moodObject, "Happy", "mood1");
+        } catch (MoodAnalyzerException e) {
+            Assert.assertEquals(MoodAnalyzerException.ExceptionType.NO_SUCH_FIELD, e.type);
+        }
+    }
+
+    //Set Null value To Field Dynamically Using Reflection It Throws Exception
+    @Test
+    public void givenFieldNameAndNullValue_ShouldThrowMoodAnalyzerException() {
+        try {
+            MoodAnalyzer moodObject = MoodAnalyzerFactory.createMoodAnalyzer();
+            MoodAnalyzerFactory.setFieldValue(moodObject, null, "mood");
+        } catch (MoodAnalyzerException e) {
+            Assert.assertEquals(MoodAnalyzerException.ExceptionType.METHOD_INVOCATION_ISSUE, e.type);
         }
     }
 }

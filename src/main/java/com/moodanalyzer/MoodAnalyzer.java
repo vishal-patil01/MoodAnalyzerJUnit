@@ -3,7 +3,7 @@ package com.moodanalyzer;
 import com.moodanalyserexception.MoodAnalyzerException;
 
 public class MoodAnalyzer {
-    private String mood="Default";
+    private String mood;
 
     public MoodAnalyzer() {
         mood="Default";
@@ -18,11 +18,11 @@ public class MoodAnalyzer {
             if (mood.contains("Sad")) {
                 return "Sad";
             } else if (mood.isEmpty()) {
-                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.IS_EMPTY,"Empty String Passed Pass Valid String");
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.ENTERED_EMPTY,"Empty String Passed Pass Valid String");
             }
             return "Happy";
         } catch (NullPointerException e) {
-            throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.IS_NULL,"Null Value Passed Pass Valid Value");
+            throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.ENTERED_NULL,"Null Value Passed Pass Valid Value");
         }
     }
     @Override
