@@ -75,6 +75,16 @@ public class MoodAnalyzerTest {
     }
 
     @Test
+    public void givenMoodAnalyserClassUsingParameterizedConstructor_WhenProper_ShouldReturnObject() {
+        try {
+            MoodAnalyzer reflectionMoodObj = MoodAnalyzerFactory.createMoodAnalyzer("I am in Happy Mood");
+            Assert.assertEquals(new MoodAnalyzer("I am in Happy Mood"), reflectionMoodObj);
+        } catch (MoodAnalyzerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void givenClassName_WhenImproper_ShouldThrowMoodAnalyzerException() {
         try {
             MoodAnalyzerFactory.getConstructor("com.moodanalyzer.MoodAnalyzer1", String.class);

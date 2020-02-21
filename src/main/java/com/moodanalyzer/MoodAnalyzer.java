@@ -2,10 +2,8 @@ package com.moodanalyzer;
 
 import com.moodanalyserexception.MoodAnalyzerException;
 
-import java.util.Objects;
-
 public class MoodAnalyzer {
-    private String mood;
+    private String mood="Default";
 
     public MoodAnalyzer() {
         mood="Default";

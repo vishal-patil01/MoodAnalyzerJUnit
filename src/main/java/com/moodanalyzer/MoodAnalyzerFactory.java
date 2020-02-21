@@ -5,11 +5,24 @@ import com.moodanalyserexception.MoodAnalyzerException;
 import java.lang.reflect.Constructor;
 
 public class MoodAnalyzerFactory {
-    //For Default Constructor
+
     public static MoodAnalyzer createMoodAnalyzer() {
         try {
-            Constructor<?>  constructor = Class.forName("com.moodanalyzer.MoodAnalyzer").getConstructor();
+            Constructor<?> constructor = Class.forName("com.moodanalyzer.MoodAnalyzer").getConstructor();
             MoodAnalyzer obj = (MoodAnalyzer) constructor.newInstance();
+            return obj;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //Parameterized
+    public static MoodAnalyzer createMoodAnalyzer(String mood) {
+
+        try {
+            Constructor<?> constructor = Class.forName("com.moodanalyzer.MoodAnalyzer").getConstructor(String.class);
+            MoodAnalyzer obj = (MoodAnalyzer) constructor.newInstance(mood);
             return obj;
         } catch (Exception e) {
             e.printStackTrace();
