@@ -2,10 +2,13 @@ package com.moodanalyzer;
 
 import com.moodanalyserexception.MoodAnalyzerException;
 
+import java.util.Objects;
+
 public class MoodAnalyzer {
     private String mood;
 
     public MoodAnalyzer() {
+        mood="Default";
     }
 
     public MoodAnalyzer(String mood) {
@@ -24,4 +27,11 @@ public class MoodAnalyzer {
             throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.IS_NULL,"Null Value Passed Pass Valid Value");
         }
     }
+    @Override
+    public boolean equals(Object another) {
+       if (this.mood.equals(((MoodAnalyzer)another).mood))
+           return true;
+       return false;
+    }
+
 }

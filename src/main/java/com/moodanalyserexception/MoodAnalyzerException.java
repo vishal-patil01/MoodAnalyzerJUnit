@@ -3,7 +3,7 @@ package com.moodanalyserexception;
 public class MoodAnalyzerException extends RuntimeException {
 
     public enum ExceptionType {
-        IS_EMPTY, IS_NULL;
+        IS_EMPTY, IS_NULL, NO_SUCH_CLASS, NO_SUCH_METHOD;
     }
 
     public final ExceptionType type;
